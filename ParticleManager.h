@@ -22,6 +22,11 @@ private: // エイリアス
 	using XMMATRIX = DirectX::XMMATRIX;
 
 public: // サブクラス
+	// 定数バッファ用データ構造体（マテリアル）
+	struct ConstBufferDataMaterial {
+		XMFLOAT4 color; // 色 (RGBA)
+	};
+
 	// 頂点データ構造体
 	struct VertexPos
 	{
@@ -58,6 +63,8 @@ public: // サブクラス
 		float s_scale = 1.0f;
 		//最終値
 		float e_scale = 0.0f;
+
+		XMFLOAT4 color; // 色 (RGBA)
 	};
 
 private: // 定数
@@ -224,7 +231,7 @@ public: // メンバ関数
 	///	<param name="position">初期座標</param>
 	///	<param name="velocity">速度</param>
 	///	<param name="accel">加速度</param>
-	void Add(int life, XMFLOAT3 position, XMFLOAT3 velociy, XMFLOAT3 accel, float start_scale, float end_scale);
+	void Add(int life, XMFLOAT3 position, XMFLOAT3 velociy, XMFLOAT3 accel, float start_scale, float end_scale, XMFLOAT4 color);
 
 private: // メンバ変数
 	ComPtr<ID3D12Resource> constBuff; // 定数バッファ
@@ -232,4 +239,5 @@ private: // メンバ変数
 	// ローカルスケール
 	XMFLOAT3 scale = { 1,1,1 };
 
+	ConstBufferDataMaterial* constMapMaterial = nullptr;
 };

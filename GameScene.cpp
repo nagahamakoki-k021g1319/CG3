@@ -66,7 +66,7 @@ void GameScene::Update()
 	//	particleManager->SetPosition(position);
 	//}
 
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < 5; i++) {
 		//X,Y,Z全て[-5.0f,+5.0f]でランダムに分布
 		const float rnd_pos = 10.0f;
 		XMFLOAT3 pos{};
@@ -85,8 +85,15 @@ void GameScene::Update()
 		XMFLOAT3 acc{};
 		acc.y = -(float)rand() / RAND_MAX * rnd_acc;
 
+		//色
+		const float rnd_color = 1.0f;
+		XMFLOAT4 color{  };
+		color.x = (float)rand() / RAND_MAX * rnd_color - rnd_color / 2.0f;
+		color.y = (float)rand() / RAND_MAX * rnd_color - rnd_color / 2.0f;
+		color.z = (float)rand() / RAND_MAX * rnd_color - rnd_color / 2.0f;
+		color.w = (float)rand() / RAND_MAX * rnd_color - rnd_color / 2.0f;
 		//追加
-		particleManager->Add(60, pos, vel, acc, 1.0f, 0.0f);
+		particleManager->Add(60, pos, vel, acc, 1.0f, 0.0f, color);
 
 	}
 
